@@ -5,7 +5,7 @@
   --color-bg : #fff;
   --color-bg-variant : lightblue;
   --color-primary-variant : lightgreen;
-  --color-primary : lightred;
+  --color-primary : lightcoral;
   --color-white : #fff;
   --color-light: #fff;
 
@@ -49,6 +49,9 @@ body{
   color: var(--color-primary);
 }
 
+#root{
+  min-height: 100vh;
+}
 
 /* =============== COMMON STYLES ============== */
 
@@ -61,12 +64,24 @@ body{
   padding: 2rem;
 }
 
+main{
+  height: 100vh;
+}
+
 h1,
 h2,
 h3,
 h4{
   font-weight: 500;
   margin-bottom: 1rem;
+}
+
+input{
+  padding: 0.5rem;
+    margin-block: 0.5rem;
+    border-radius: 0.3rem;
+    outline: none;
+    border: 1px solid;
 }
 
 img{
@@ -106,10 +121,33 @@ button{
   border: 1px solid var(--color-primary);
 }
 
-.btn .primary{
+.btn-primary{
   background-color: var(--color-primary);
   color: white;
 }
+
+/* =============== ALIGNMENTS ============== */
+
+.grid-center{
+  display: grid;
+  place-items: center;
+}
+
+.flex-row{
+  display: flex;
+}
+
+.flex-col{
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-center{
+  justify-content: center;
+  align-items: center;
+}
+
+
 
 /* =============== MEDIA QUERIES ============== */
 
