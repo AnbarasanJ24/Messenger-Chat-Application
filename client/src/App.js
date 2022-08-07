@@ -8,7 +8,7 @@ function App() {
 
   return (
     <div className="App">
-      {id ? <Dashboard /> : <Login setId={setId} />}
+      {id ? <Dashboard id={id} /> : <Login setId={setId} />}
     </div>
   );
 }

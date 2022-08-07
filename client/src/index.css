@@ -60,8 +60,8 @@ body{
   margin-inline: auto;
 }
 
-.section{
-  padding: 2rem;
+section{
+  padding: 1rem;
 }
 
 main{
@@ -73,7 +73,6 @@ h2,
 h3,
 h4{
   font-weight: 500;
-  margin-bottom: 1rem;
 }
 
 input{
@@ -147,6 +146,12 @@ button{
   align-items: center;
 }
 
+/* MATERIAL CHANGE */
+.css-1h9z7r5-MuiButtonBase-root-MuiTab-root{
+  padding: 0.5rem !important;
+  color: var(--color-primary) !important;
+  font-size: 0.8rem !important;
+}
 
 
 /* =============== MEDIA QUERIES ============== */
