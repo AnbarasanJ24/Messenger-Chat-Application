@@ -1,9 +1,17 @@
 import React from 'react'
 import './contacts.css'
+import { useContacts } from '../../contexts/ContactContextProvider';
 
 const Contacts = () => {
+  const {contacts} = useContacts();
   return (
-    <div>Contacts</div>
+    <ul className='context-container'>
+      {
+        contacts.map(contact =>{
+          return <li key={contact.id}>{contact.name}</li>
+        })
+      }
+    </ul>
   )
 }
 

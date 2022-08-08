@@ -1,24 +1,44 @@
-import React from 'react'
-import Typography from '@mui/material/Typography';
+import React, { useRef } from 'react'
+// import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
+import { useContacts } from '../../contexts/ContactContextProvider';
 
-const NewConversation = ({openConversation, setOpenConversation}) => {
+const NewConversation = ({ openConversation, setOpenConversation }) => {
+
+    const idRef = useRef();
+    const contactRef = useRef();
+    const {createContact} = useContacts();
+
+    const handleSubmit = (event) => {
+        event.preventDefault()
+        console.log(idRef.current.value);
+        console.log(contactRef.current.value);
+        createContact(idRef.current.value, contactRef.current.value);
+        setOpenConversation(false);
+    }
+
     return (
         <Modal
-        className='modal'
+            className='modal'
             open={openConversation}
             onClose={() => setOpenConversation(false)}
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
         >
             <Box className='grid-center modal-container'>
-                <Typography id="modal-modal-title" variant="h6" component="h2">
-                   Conversation
-                </Typography>
-                <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                    Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-                </Typography>
+                <h4>Create Conversation</h4>
+                <form onSubmit={handleSubmit} className='flex-col conversation-form'>
+                    <div className='form-control'>
+                        <label htmlFor="">Session Id</label>
+                        <input type="text" ref={idRef} />
+                    </div>
+                    <div className='form-control'>
+                        <label htmlFor="">Contact</label>
+                        <input type="text" ref={contactRef} />
+                    </div>
+                    <button className='btn'>Create</button>
+                </form>
             </Box>
         </Modal>
     )
