@@ -2,7 +2,7 @@ import React, { useRef } from 'react'
 // import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
-import { useContacts } from '../../contexts/ContactContextProvider';
+import { useContacts } from '../../contexts/ContactsProvider';
 
 const NewContact = ({openContact, setOpenContact}) => {
     const idRef = useRef();

@@ -1,0 +1,8 @@
+[active='true']{
+    background-color: coral;
+    color: white;
+}
+
+.conversation-container  li{
+    padding: 0.5rem;
+}

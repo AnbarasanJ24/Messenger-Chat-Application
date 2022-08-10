@@ -1,21 +1,31 @@
-import React, { useRef } from 'react'
+import React, {useState} from 'react'
 // import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
-import { useContacts } from '../../contexts/ContactContextProvider';
+import { useContacts } from '../../contexts/ContactsProvider';
+import { useConversation } from '../../contexts/ConversationProvider';
 
 const NewConversation = ({ openConversation, setOpenConversation }) => {
 
-    const idRef = useRef();
-    const contactRef = useRef();
-    const {createContact} = useContacts();
+    const [selectedId, setSelectedIds] = useState([]);
+
+    const {contacts} = useContacts();
+    const {createConversation} = useConversation();
 
     const handleSubmit = (event) => {
         event.preventDefault()
-        console.log(idRef.current.value);
-        console.log(contactRef.current.value);
-        createContact(idRef.current.value, contactRef.current.value);
+        createConversation(selectedId)
         setOpenConversation(false);
+    }
+
+    const handleCheckBox = (contactId)=>{
+        setSelectedIds(prevId => {
+            if(prevId.includes(contactId)){
+                return prevId.filter(id => contactId !== id)
+            }else{
+                return [...prevId, contactId]
+            }
+        })
     }
 
     return (
@@ -29,14 +39,16 @@ const NewConversation = ({ openConversation, setOpenConversation }) => {
             <Box className='grid-center modal-container'>
                 <h4>Create Conversation</h4>
                 <form onSubmit={handleSubmit} className='flex-col conversation-form'>
-                    <div className='form-control'>
-                        <label htmlFor="">Session Id</label>
-                        <input type="text" ref={idRef} />
-                    </div>
-                    <div className='form-control'>
-                        <label htmlFor="">Contact</label>
-                        <input type="text" ref={contactRef} />
-                    </div>
+                     <ul>
+                        {
+                            contacts.map(contact =>{
+                                return <li key={contact.id}>
+                                    <input type="checkbox" value={selectedId.includes(contact.id)} id={contact.name} onChange={()=> handleCheckBox(contact.id)} />
+                                    <label htmlFor={contact.name}>{contact.name}</label>
+                                </li>
+                            })
+                        }
+                     </ul>
                     <button className='btn'>Create</button>
                 </form>
             </Box>

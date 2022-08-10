@@ -154,6 +154,7 @@ button{
 }
 
 .css-13xfq8m-MuiTabPanel-root {
+  padding: 0 !important;
   padding-top: 1rem !important;
 }
 
